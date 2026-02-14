@@ -1,0 +1,289 @@
+package en
+
+// The word that is the alternative form of another word.
+// field `Word` contains the linked word, and `Extra` contains
+// optional additional text.
+type AltOf struct {
+	Word  string  `json:"word" db:"INDEX"`
+	Extra *string `json:"extra,omitempty"`
+}
+
+type LinkageData struct {
+	Alt         *string  `json:"alt,omitempty"`
+	English     *string  `json:"english,omitempty"` // DEPRECATED in favour of "translation"
+	Translation string   `json:"translation"`
+	Extra       *string  `json:"extra,omitempty"`
+	Qualifier   *string  `json:"qualifier,omitempty"`
+	RawTags     []string `json:"raw_tags,omitempty"`
+	Roman       *string  `json:"roman,omitempty"`
+	// Japanese Kanji and furigana
+	Ruby      [][]string `json:"ruby,omitempty"`
+	Sense     *string    `json:"sense,omitempty"`
+	Tags      []string   `json:"tags,omitempty"`
+	Taxonomic *string    `json:"taxonomic,omitempty"`
+	Topics    []string   `json:"topics,omitempty"`
+	Urls      []string   `json:"urls,omitempty"`
+	Word      string     `json:"word" db:"INDEX"`
+}
+
+type ExampleData struct {
+	Alt                    *string  `json:"alt,omitempty"`
+	English                *string  `json:"english,omitempty"` // DEPRECATED in favour of "translation"
+	Translation            *string  `json:"translation,omitempty"`
+	BoldTranslationOffsets [][2]int `json:"bold_translation_offsets,omitempty"`
+	Note                   *string  `json:"note,omitempty"`
+	Ref                    *string  `json:"ref,omitempty"`
+	Roman                  *string  `json:"roman,omitempty"`
+	BoldRomanOffsets       [][2]int `json:"bold_roman_offsets,omitempty"`
+	// Japanese Kanji and furigana
+	Ruby            [][]string `json:"ruby,omitempty"`
+	Text            *string    `json:"text,omitempty"`
+	BoldTextOffsets [][2]int   `json:"bold_text_offsets,omitempty"`
+	Tags            []string   `json:"tags,omitempty"`
+	RawTags         []string   `json:"raw_tags,omitempty"`
+}
+
+type FormOf struct {
+	Word  string  `json:"word" db:"INDEX"`
+	Extra *string `json:"extra,omitempty"`
+	Roman *string `json:"roman,omitempty"`
+}
+
+type LinkData [][]string
+
+// It is the alias of `PlusObjTemplateData`.
+type ExtraTemplateData struct {
+	Tags    []string `json:"tags,omitempty"`
+	Words   []string `json:"words,omitempty"`
+	Meaning string   `json:"meaning"`
+}
+
+// python3: TemplateArgs = dict[Union[int, str], str]
+//
+// We will simply assume all keys are strings. In this way,
+// fields can be more easily handled.
+
+type TemplateArgs map[string]string
+
+type TemplateData struct {
+	Args       TemplateArgs      `json:"args"`
+	Explansion string            `json:"explansion"`
+	Name       string            `json:"name"`
+	ExtraData  ExtraTemplateData `json:"extra_data"`
+}
+
+type DescendantData struct {
+	// Wiktionary language code
+	LangCode string `json:"lang_code"`
+	// Language name
+	Lang        string           `json:"lang"`
+	Word        string           `json:"word"`
+	Roman       string           `json:"roman"`
+	Tags        []string         `json:"tags,omitempty"`
+	RawTags     []string         `json:"raw_tags,omitempty"`
+	Descendants []DescendantData `json:"descendants,omitempty"`
+	// Japanese Kanji and furigana
+	Ruby  [][]string `json:"ruby,omitempty"`
+	Sense string     `json:"sense,omitempty"`
+}
+
+type FormData struct {
+	Form   string  `json:"form"`
+	HeadNr int     `json:"head_nr"`
+	Ipa    *string `json:"ipa,omitempty"`
+	Roman  *string `json:"roman,omitempty"`
+	// Japanese Kanji and furigana
+	Ruby    [][]string `json:"ruby,omitempty"`
+	Source  *string    `json:"source,omitempty"`
+	Tags    []string   `json:"tags,omitempty"`
+	RawTags []string   `json:"raw_tags,omitempty"`
+	Topics  []string   `json:"topics,omitempty"`
+}
+
+type Hyphenation struct {
+	Parts []string `json:"parts,omitempty"`
+	Tags  []string `json:"tags,omitempty"`
+}
+
+type SoundData struct {
+	Audio    *string `json:"audio,omitempty"`
+	AudioIpa *string `json:"audio-ipa,omitempty"`
+	// English pronunciation
+	Enpr      *string `json:"enpr,omitempty"`
+	Form      *string `json:"form,omitempty"`
+	Hangeul   *string `json:"hangeul,omitempty"`
+	Homophone *string `json:"homophone,omitempty"`
+	// International Phonetic Alphabet
+	Ipa    *string  `json:"ipa,omitempty"`
+	Mp3Url *string  `json:"mp3_url,omitempty"`
+	Note   *string  `json:"note,omitempty"`
+	OggUrl *string  `json:"ogg_url,omitempty"`
+	Other  *string  `json:"other,omitempty"`
+	Rhymes *string  `json:"rhymes,omitempty"`
+	Tags   []string `json:"tags,omitempty"`
+	Text   *string  `json:"text,omitempty"`
+	Topics []string `json:"topics,omitempty"`
+	// Chinese word pronunciation
+	ZhPron *string `json:"zh-pron,omitempty"`
+}
+
+type TranslationData struct {
+	Alt         *string  `json:"alt,omitempty"`
+	LangCode    string   `json:"lang_code"`
+	Code        *string  `json:"code,omitempty"` // DEPRECATED in favour of `lang_code`
+	English     *string  `json:"english"`        // DEPRECATED in favour of `translation`
+	Translation string   `json:"translation"`
+	Lang        string   `json:"lang"`
+	Note        *string  `json:"note,omitempty"`
+	Roman       *string  `json:"roman,omitempty"`
+	Sense       *string  `json:"sense,omitempty"`
+	Tags        []string `json:"tags,omitempty"`
+	Taxonomic   *string  `json:"taxonomic,omitempty"`
+	Topics      []string `json:"topics,omitempty"`
+	Word        string   `json:"word"`
+}
+
+// Xxyzz's East Asian etymology example data
+type EtymologyExample struct {
+	English     *string  `json:"english,omitempty"` // DEPRECATED in favour of `translation`
+	Translation string   `json:"translation"`
+	RawTags     []string `json:"raw_tags,omitempty"`
+	Ref         *string  `json:"ref,omitempty"`
+	Roman       *string  `json:"roman,omitempty"`
+	Tags        []string `json:"tags,omitempty"`
+	Text        *string  `json:"text,omitempty"`
+	Type        *string  `json:"type,omitempty"`
+}
+
+type ReferenceData struct {
+	Text string  `json:"text"`
+	Refn *string `json:"refn,omitempty"`
+}
+
+type AttestationData struct {
+	Date       string          `json:"date"`
+	References []ReferenceData `json:"references,omitempty"`
+}
+
+type SenseData struct {
+	AltOf           []AltOf           `json:"alt_of,omitempty"`
+	Antonyms        []LinkageData     `json:"antonyms,omitempty"`
+	Categories      []string          `json:"categories,omitempty"`
+	CompoundOf      []AltOf           `json:"compound_of,omitempty"`
+	CoordinateTerms []LinkageData     `json:"coordinate_terms,omitempty"`
+	Examples        []ExampleData     `json:"examples,omitempty"`
+	FormOf          []FormOf          `json:"form_of,omitempty"`
+	Glosses         []string          `json:"glosses,omitempty"`
+	HeadNr          int               `json:"head_nr"`
+	Holonyms        []LinkageData     `json:"holonyms,omitempty"`
+	Hypernyms       []LinkageData     `json:"hypernyms,omitempty"`
+	Hyponyms        []LinkageData     `json:"hyponyms,omitempty"`
+	Instances       []LinkageData     `json:"instances,omitempty"`
+	Links           []LinkData        `json:"links,omitempty"`
+	Meronyms        []LinkageData     `json:"meronyms,omitempty"`
+	Qualifier       *string           `json:"qualifier,omitempty"`
+	RawGlosses      []string          `json:"raw_glosses,omitempty"`
+	Related         []LinkageData     `json:"related,omitempty"`
+	Senseid         []string          `json:"senseid,omitempty"`
+	Synonyms        []LinkageData     `json:"synonyms,omitempty"`
+	Tags            []string          `json:"tags,omitempty"`
+	Taxonomic       *string           `json:"taxonomic,omitempty"`
+	Topics          []string          `json:"topics,omitempty"`
+	Wikidata        []string          `json:"wikidata,omitempty"`
+	Wikipedia       []string          `json:"wikipedia,omitempty"`
+	Attestations    []AttestationData `json:"attestations,omitempty"`
+}
+
+type WordData struct {
+	Abbreviations []LinkageData `json:"abbreviations,omitempty"`
+	// list of words that his sense is an alternative form of; this is a list
+	// of dictionaries, with field `word` containing the linked word and
+	// optionally `extra` containing additional text.
+	AltOf []AltOf `json:"alt_of,omitempty"`
+	// non-disambiguated antonym linkages for the word
+	Antonyms []LinkageData `json:"antonyms,omitempty"`
+	// list of non-disambiguated categories for the word
+	Categories []string `json:"categories,omitempty"`
+	// non-disambiguated coordinate term linkages for the word
+	CoordinateTerms []LinkageData `json:"coordinate_terms,omitempty"`
+	// non-disambiguated derived word linkages for the word
+	Derived []LinkageData `json:"derived,omitempty"`
+	// descendants of the word
+	Descendants []DescendantData `json:"descendants,omitempty"`
+
+	EtymologyExamples []EtymologyExample `json:"etymology_examples,omitempty"`
+	// for words with multiple numbererd etymologies, this contains the number of the etymology
+	// under which this entry appeared.
+	EtymologyNumber *int `json:"etymology_number,omitempty"`
+	// templates and their arguments and expansions from the etymology section.
+	// This can be used to easily parse etymological relations. Certain common
+	// templates that do not signify etymological relations are not included.
+	EtymologyTemplates []TemplateData `json:"etymology_templates,omitempty"`
+	// etymology section as cleaned text
+	EtymologyText *string  `json:"etymology_text,omitempty"`
+	FormOf        []FormOf `json:"form_of,omitempty"`
+	// list of inflected or alternative forms specified for the word (e.g.,
+	// plural, comparative, superlative, roman script version). This is a list of dictionaries,
+	// where each dictionary has a `form` key and a `tags` key. The `tags` identify what type
+	// of form it is. It may also contain "ipa", "roman", and "source" fields. The form can be
+	// "-" when the word is marked as not having that form (some of those will be word-specific,
+	// while others are language-specific; post-processing can drop such forms when no word has
+	// a value for that tag combination).
+	Forms []FormData `json:"forms,omitempty"`
+	// part-of-speech specific head tags for the word. This basically
+	// just captures the templates (their name and arguments) as a list of
+	// dictionaries. Most applications may want to ignore this.
+	HeadTemplates []TemplateData `json:"head_templates,omitempty"`
+	Holonyms      []LinkageData  `json:"holonyms,omitempty"`
+	Hyphenation   []string       `json:"hyphenation,omitempty"` // Being deprecated
+	Hyphenations  []Hyphenation  `json:"hyphenations,omitempty"`
+	// non-disambiguated hypernym linkages for the word
+	Hypernyms []LinkageData `json:"hypernyms,omitempty"`
+	// non-disambiguated hyponym linkages for the word
+	Hyponyms []LinkageData `json:"hyponyms,omitempty"`
+	// conjugation and declension templates found for the word, as dictionaries.
+	// These basically capture the language-specific inflection template for the word.
+	// Note that for some languages inflection information is also contained in `head_templates`.
+	// According to [wiktextract](github.com/tatuylonen/wiktextract), inflections
+	// from the inflection tables will be parsed into forms, so there is usually no
+	// need to use the `inflection_templates` data.
+	InflectionTemplates []TemplateData `json:"inflection_templates,omitempty"`
+	InfoTemplates       []TemplateData `json:"info_templates,omitempty"`
+	Instances           []LinkageData  `json:"instances,omitempty"`
+	// name of the language this word belongs to (e.g., `English`)
+	Lang string `json:"lang" db:"INDEX"`
+	// Wiktionary language code corresponding to `lang` key (e.g., `en`)
+	LangCode       string `json:"lang_code" db:"INDEX"`
+	LiteralMeaning string `json:"literal_meaning"`
+	// non-disambiguated meronym linkages for the word
+	Meronyms      []LinkageData `json:"meronyms,omitempty"`
+	OriginalTitle string        `json:"original_title"`
+	// part-of-speech, such as "noun", "verb", "adj", "adv", "pron", "determiner",
+	// "prep" (preposition), "postp" (postposition), and many others.
+	Pos       string        `json:"pos"`
+	Proverbs  []LinkageData `json:"proverbs,omitempty"`
+	Redirects []string      `json:"redirects,omitempty"`
+	// non-ambiguated related word linkages for the word
+	Related []LinkageData `json:"related,omitempty"`
+	// list of word senses (dictionaries) for this word/part-of-speech
+	Senses []SenseData `json:"senses,omitempty"`
+	// list of dictionaries containing pronunciation, hyphenation, rhyming, and related
+	// information. Each dictionary may have a `tags` key containing tags that clarify
+	// what kind of form that entry is. Different types of information are stored in
+	// different fields: `ipa` is
+	// [IPA](https://en.wikipedia.org/wiki/International_Phonetic_Alphabet) pronunciation,
+	// `enPR` is [enPR](https://en.wikipedia.org/wiki/Pronunciation_respelling_for_English)
+	// pronunciation, `audio` is name of sound file in Wikimedia commons.
+	Sounds []SoundData `json:"sounds,omitempty"`
+	// non-disambiguated synonym linkages for the word
+	Synonyms []LinkageData `json:"synonyms,omitempty"`
+	// non-disambiguated translation entries
+	Translations []TranslationData `json:"translations,omitempty"`
+	Troponyms    []LinkageData     `json:"troponyms,omitempty"`
+	// non-disambiguated Wikidata identifier
+	Wikidata  []string `json:"wikidata,omitempty"`
+	Wikipedia []string `json:"wikipedia,omitempty"`
+	// the word form
+	Word     string        `json:"word" db:"INDEX"`
+	Anagrams []LinkageData `json:"anagrams,omitempty"`
+}
