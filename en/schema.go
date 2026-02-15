@@ -31,16 +31,19 @@ type ExampleData struct {
 	English                *string  `json:"english,omitempty"` // DEPRECATED in favour of "translation"
 	Translation            *string  `json:"translation,omitempty"`
 	BoldTranslationOffsets [][2]int `json:"bold_translation_offsets,omitempty"`
-	Note                   *string  `json:"note,omitempty"`
-	Ref                    *string  `json:"ref,omitempty"`
-	Roman                  *string  `json:"roman,omitempty"`
-	BoldRomanOffsets       [][2]int `json:"bold_roman_offsets,omitempty"`
+	// English-language parenthesized note from the beginning of a non-english example
+	Note *string `json:"note,omitempty"`
+	Ref  *string `json:"ref,omitempty"`
+	// romanization (for some languages written in non-Latin scripts)
+	Roman            *string  `json:"roman,omitempty"`
+	BoldRomanOffsets [][2]int `json:"bold_roman_offsets,omitempty"`
 	// Japanese Kanji and furigana
-	Ruby            [][]string `json:"ruby,omitempty"`
-	Text            *string    `json:"text,omitempty"`
-	BoldTextOffsets [][2]int   `json:"bold_text_offsets,omitempty"`
-	Tags            []string   `json:"tags,omitempty"`
-	RawTags         []string   `json:"raw_tags,omitempty"`
+	Ruby [][]string `json:"ruby,omitempty"`
+	// the example text
+	Text            string   `json:"text"`
+	BoldTextOffsets [][2]int `json:"bold_text_offsets,omitempty"`
+	Tags            []string `json:"tags,omitempty"`
+	RawTags         []string `json:"raw_tags,omitempty"`
 }
 
 type FormOf struct {
