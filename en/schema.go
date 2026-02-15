@@ -186,32 +186,69 @@ type AttestationData struct {
 }
 
 type SenseData struct {
-	AltOf           []AltOf           `json:"alt_of,omitempty"`
-	Antonyms        []LinkageData     `json:"antonyms,omitempty"`
-	Categories      []string          `json:"categories,omitempty"`
-	CompoundOf      []AltOf           `json:"compound_of,omitempty"`
-	CoordinateTerms []LinkageData     `json:"coordinate_terms,omitempty"`
-	Examples        []ExampleData     `json:"examples,omitempty"`
-	FormOf          []FormOf          `json:"form_of,omitempty"`
-	Glosses         []string          `json:"glosses,omitempty"`
-	HeadNr          int               `json:"head_nr"`
-	Holonyms        []LinkageData     `json:"holonyms,omitempty"`
-	Hypernyms       []LinkageData     `json:"hypernyms,omitempty"`
-	Hyponyms        []LinkageData     `json:"hyponyms,omitempty"`
-	Instances       []LinkageData     `json:"instances,omitempty"`
-	Links           []LinkData        `json:"links,omitempty"`
-	Meronyms        []LinkageData     `json:"meronyms,omitempty"`
-	Qualifier       *string           `json:"qualifier,omitempty"`
-	RawGlosses      []string          `json:"raw_glosses,omitempty"`
-	Related         []LinkageData     `json:"related,omitempty"`
-	Senseid         []string          `json:"senseid,omitempty"`
-	Synonyms        []LinkageData     `json:"synonyms,omitempty"`
-	Tags            []string          `json:"tags,omitempty"`
-	Taxonomic       *string           `json:"taxonomic,omitempty"`
-	Topics          []string          `json:"topics,omitempty"`
-	Wikidata        []string          `json:"wikidata,omitempty"`
-	Wikipedia       []string          `json:"wikipedia,omitempty"`
-	Attestations    []AttestationData `json:"attestations,omitempty"`
+	// list of words that his sense is an inflected form of; this is a
+	// list of dictionaries, with field `word` containing the linnked word
+	// and optionally `extra` containing additional text.
+	AltOf []AltOf `json:"alt_of,omitempty"`
+	// sense-disambiguated antonym linkages for the word.
+	Antonyms []LinkageData `json:"antonyms,omitempty"`
+	// list of sense-disambiguated category names extracted from (a
+	// subset) of the Category links on the page
+	Categories []string `json:"categories,omitempty"`
+	CompoundOf []AltOf  `json:"compound_of,omitempty"`
+	// sense-disambiguated coordinate_terms linkages
+	CoordinateTerms []LinkageData `json:"coordinate_terms,omitempty"`
+	// list of usage examples, each example being a dictionary with `text`
+	// field containing the example text, optional `ref` field containing a source reference,
+	// optional `english` field containing English translation, optional `type" field containing
+	// example type (currently `example` or `quotation` if present), optional
+	// `roman` field containing romanization for some languages written in non-Latin scripts),
+	// and optional (rare) `note` field contains English-language parenthesized note from the
+	// beginning of a non-english example.
+	Examples []ExampleData `json:"examples,omitempty"`
+	FormOf   []FormOf      `json:"form_of,omitempty"`
+	// list of gloss strings for the word sense (usually only one). This has
+	// been cleaned, and should be straightforward text with no tagging.
+	Glosses []string `json:"glosses,omitempty"`
+	HeadNr  int      `json:"head_nr"`
+	// sense-disambiguated linkages indicating being part of something
+	// (not systematically encoded).
+	Holonyms []LinkageData `json:"holonyms,omitempty"`
+	// sense-disambiguated hypernym linkages for the word
+	Hypernyms []LinkageData `json:"hypernyms,omitempty"`
+	// sense-disambiguated hyponym linkages for the word
+	Hyponyms  []LinkageData `json:"hyponyms,omitempty"`
+	Instances []LinkageData `json:"instances,omitempty"`
+	Links     []LinkData    `json:"links,omitempty"`
+	// sense-disambiguated linkages indicating having a part (fairly rare)
+	Meronyms  []LinkageData `json:"meronyms,omitempty"`
+	Qualifier *string       `json:"qualifier,omitempty"`
+	// list of gloss strings for the word sense, with less cleaning than
+	// `glosses`. In particular, parenthesized parts that have been parsed from the gloss
+	// into `tags` and `topics` are still present here. This version may be easier for
+	// humans to interpret.
+	RawGlosses []string `json:"raw_glosses,omitempty"`
+	// sense-disambiguated related word linkages for the word.
+	Related []LinkageData `json:"related,omitempty"`
+	// list of textual indentifiers collected for the sense. If there is a
+	// QID for the entry (e.g., Q123), those are stored in the wikidata field.
+	Senseid []string `json:"senseid,omitempty"`
+	// sense-disambiguated synonym linkages for the word
+	Synonyms []LinkageData `json:"synonyms,omitempty"`
+	// list of qualifiers and tags for the gloss. This is a list of strings,
+	// and may include words such as "archaic", "colloquial", "present",
+	// "participle", "plural", "feminine", and many others (new words may
+	// appear arbitrarily).
+	Tags      []string `json:"tags,omitempty"`
+	Taxonomic *string  `json:"taxonomic,omitempty"`
+	// list of sense-disambiguated topic names (kind of similar to
+	// categories but determined differently).
+	Topics []string `json:"topics,omitempty"`
+	// list of QIDs (e.g., Q123) for the sense
+	Wikidata []string `json:"wikidata,omitempty"`
+	// linst of Wikipedia page titles (with optional language code prefix)
+	Wikipedia    []string          `json:"wikipedia,omitempty"`
+	Attestations []AttestationData `json:"attestations,omitempty"`
 }
 
 type WordData struct {
