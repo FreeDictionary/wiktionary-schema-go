@@ -106,21 +106,41 @@ type Hyphenation struct {
 }
 
 type SoundData struct {
-	Audio    *string `json:"audio,omitempty"`
+	// name of a sound file in WikiMedia Commons
+	Audio *string `json:"audio,omitempty"`
+	// IPA string associated with the audio file, generally giving IPA
+	// transcription of what is in the
 	AudioIpa *string `json:"audio-ipa,omitempty"`
-	// English pronunciation
-	Enpr      *string `json:"enpr,omitempty"`
-	Form      *string `json:"form,omitempty"`
-	Hangeul   *string `json:"hangeul,omitempty"`
+	// English pronunciation respelling
+	Enpr    *string `json:"enpr,omitempty"`
+	Form    *string `json:"form,omitempty"`
+	Hangeul *string `json:"hangeul,omitempty"`
+	// list of homophones for the word.
+	//
+	// Note: a homophone is a word that is pronounced the same as another
+	// word but differs in meaning **or** in spelling.
+	//
+	// This field is not documented in the official python TypedDict
+	// models but added according to the project README.
 	Homophone *string `json:"homophone,omitempty"`
-	// International Phonetic Alphabet
-	Ipa    *string  `json:"ipa,omitempty"`
-	Mp3Url *string  `json:"mp3_url,omitempty"`
-	Note   *string  `json:"note,omitempty"`
-	OggUrl *string  `json:"ogg_url,omitempty"`
-	Other  *string  `json:"other,omitempty"`
-	Rhymes *string  `json:"rhymes,omitempty"`
-	Tags   []string `json:"tags,omitempty"`
+	// list of hyphenations.
+	//
+	// Note: syllabification or syllabication, hyphenation, is the separation of a
+	// word into syllables, whether spoken, written or signed.
+	Hyphenation *string `json:"hyphenation,omitempty"`
+	// International Phonetic Alphabet. /.../ or [...].
+	Ipa *string `json:"ipa,omitempty"`
+	// URL for an MP3 format sound file
+	Mp3Url *string `json:"mp3_url,omitempty"`
+	Note   *string `json:"note,omitempty"`
+	// URL for an OGG Vorbis format sound file
+	OggUrl *string `json:"ogg_url,omitempty"`
+	Other  *string `json:"other,omitempty"`
+	Rhymes *string `json:"rhymes,omitempty"`
+	// other labels or context information attached to the pronunciation
+	// entry (e.g., might indicate regional variant or dialect)
+	Tags []string `json:"tags,omitempty"`
+	// text associated with an audio file (often not very useful)
 	Text   *string  `json:"text,omitempty"`
 	Topics []string `json:"topics,omitempty"`
 	// Chinese word pronunciation
