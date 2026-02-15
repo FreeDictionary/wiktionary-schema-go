@@ -148,19 +148,41 @@ type SoundData struct {
 }
 
 type TranslationData struct {
-	Alt         *string  `json:"alt,omitempty"`
-	LangCode    string   `json:"lang_code"`
-	Code        *string  `json:"code,omitempty"` // DEPRECATED in favour of `lang_code`
-	English     *string  `json:"english"`        // DEPRECATED in favour of `translation`
-	Translation string   `json:"translation"`
-	Lang        string   `json:"lang"`
-	Note        *string  `json:"note,omitempty"`
-	Roman       *string  `json:"roman,omitempty"`
-	Sense       *string  `json:"sense,omitempty"`
-	Tags        []string `json:"tags,omitempty"`
-	Taxonomic   *string  `json:"taxonomic,omitempty"`
-	Topics      []string `json:"topics,omitempty"`
-	Word        string   `json:"word"`
+	// optional alternative form of the translation (e.g., in a different script)
+	Alt *string `json:"alt,omitempty"`
+	// Wiktionary's 2 or 3-letter language code for the language the language the
+	// translation is for.
+	LangCode string `json:"lang_code"`
+	// Wiktionary's 2 or 3-letter language code for the language the language the
+	// translation is for.
+	//
+	// DEPRECATED in favour of `lang_code
+	Code *string `json:"code,omitempty"`
+	// English text, generally clarifying the target sense of the translation.
+	//
+	// DEPRECATED in favour of `translation`
+	English     *string `json:"english"`
+	Translation string  `json:"translation"`
+	// The language name that the translation is for.
+	Lang string `json:"lang"`
+	// optional text describing or commenting on the translation
+	Note *string `json:"note,omitempty"`
+	// optional romanization of the translation (when in non-Latin characters)
+	Roman *string `json:"roman,omitempty"`
+	// Optional sense indicating the meaning for which this is a translation
+	// (this is a free-text string, and may not match any gloss exactly)
+	//
+	// P.S. I doubt there is grammar fault from the official documentation
+	Sense *string `json:"sense,omitempty"`
+	// optional list of qualifiers for the translations, e.g., gender
+	Tags []string `json:"tags,omitempty"`
+	// optional taxonomic name of an organism mentioned in the
+	// translation.
+	Taxonomic *string  `json:"taxonomic,omitempty"`
+	Topics    []string `json:"topics,omitempty"`
+	// the translation in the specified language (may be missing when `note`
+	// is present)
+	Word *string `json:"word,omitempty"`
 }
 
 // Xxyzz's East Asian etymology example data
