@@ -276,6 +276,10 @@ type SenseData struct {
 	Attestations []AttestationData `json:"attestations,omitempty"`
 }
 
+// Etymological information is stored under the `etymology_text`
+// and `etymology_templates` keys in the word's data. When multiple
+// part-of-speech are listed under the same etymology, the same data
+// is copied to each part-of-speech entry under that etymology.
 type WordData struct {
 	Abbreviations []LinkageData `json:"abbreviations,omitempty"`
 	// list of words that his sense is an alternative form of; this is a list
@@ -300,8 +304,19 @@ type WordData struct {
 	// templates and their arguments and expansions from the etymology section.
 	// This can be used to easily parse etymological relations. Certain common
 	// templates that do not signify etymological relations are not included.
+	//
+	//
+	// The `etymology_templates` field contains a list of templates from
+	// the etymology section. Some common templates considered not relevent
+	// for etymological information have been removed (e.g., `redlink category
+	// and `isValidPageName`). The list also includes nested templates referenced
+	// from templates directly used in the etymology description.
 	EtymologyTemplates []TemplateData `json:"etymology_templates,omitempty"`
 	// etymology section as cleaned text
+	//
+	// The `etymology_text` field contains the contents of the whole etymology
+	// section cleaned into human-readable text (i.e., templates have been
+	// expanded and HTML tags removed, among other things).
 	EtymologyText *string  `json:"etymology_text,omitempty"`
 	FormOf        []FormOf `json:"form_of,omitempty"`
 	// list of inflected or alternative forms specified for the word (e.g.,
