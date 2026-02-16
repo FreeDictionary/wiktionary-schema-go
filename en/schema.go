@@ -209,7 +209,7 @@ type TranslationData struct {
 // Xxyzz's East Asian etymology example data
 type EtymologyExample struct {
 	English     *string  `json:"english,omitempty"` // DEPRECATED in favour of `translation`
-	Translation string   `json:"translation"`
+	Translation *string  `json:"translation,omitempty"`
 	RawTags     []string `json:"raw_tags,omitempty"`
 	Ref         *string  `json:"ref,omitempty"`
 	Roman       *string  `json:"roman,omitempty"`
