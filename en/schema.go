@@ -9,21 +9,32 @@ type AltOf struct {
 }
 
 type LinkageData struct {
-	Alt         *string  `json:"alt,omitempty"`
+	// optional alternative form of the target (e.g., in a different script)
+	Alt *string `json:"alt,omitempty"`
+	// optional English text associated with the sense, usually identifying the
+	// linked target sense.
 	English     *string  `json:"english,omitempty"` // DEPRECATED in favour of "translation"
 	Translation string   `json:"translation"`
 	Extra       *string  `json:"extra,omitempty"`
 	Qualifier   *string  `json:"qualifier,omitempty"`
 	RawTags     []string `json:"raw_tags,omitempty"`
-	Roman       *string  `json:"roman,omitempty"`
+	// optional romanization of a linked word in a non-Latin script
+	Roman *string `json:"roman,omitempty"`
 	// Japanese Kanji and furigana
-	Ruby      [][]string `json:"ruby,omitempty"`
-	Sense     *string    `json:"sense,omitempty"`
-	Tags      []string   `json:"tags,omitempty"`
-	Taxonomic *string    `json:"taxonomic,omitempty"`
-	Topics    []string   `json:"topics,omitempty"`
-	Urls      []string   `json:"urls,omitempty"`
-	Word      string     `json:"word" db:"INDEX"`
+	Ruby [][]string `json:"ruby,omitempty"`
+	// text identifying the word sense or context (e.g., `"to
+	// rain very heavily"`)
+	Sense string `json:"sense,omitempty"`
+	// qualifiers specified for the sense (e.g., field of study, region,
+	// dialect, style)
+	Tags []string `json:"tags,omitempty"`
+	// Optional taxonomic name associated with the linkage
+	Taxonomic *string `json:"taxonomic,omitempty"`
+	// list of topic descriptors for the linkage (e.g., `military`)
+	Topics []string `json:"topics,omitempty"`
+	Urls   []string `json:"urls,omitempty"`
+	// the word this links to (string)
+	Word string `json:"word" db:"INDEX"`
 }
 
 type ExampleData struct {
