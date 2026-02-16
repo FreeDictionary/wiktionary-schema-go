@@ -302,6 +302,13 @@ type WordData struct {
 	// non-disambiguated derived word linkages for the word
 	Derived []LinkageData `json:"derived,omitempty"`
 	// descendants of the word
+	//
+	// If a word has a "Descendants" section, the descendants key will
+	// appear in the word's data.
+	//
+	// `descendants data will also appear for the special case of "Derived terms"
+	// and "Extensions" sections for words that are roots in reconstructed
+	// languages, as these sections have the same format.
 	Descendants []DescendantData `json:"descendants,omitempty"`
 
 	EtymologyExamples []EtymologyExample `json:"etymology_examples,omitempty"`
