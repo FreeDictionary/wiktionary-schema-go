@@ -80,6 +80,9 @@ type TemplateData struct {
 }
 
 type DescendantData struct {
+	// The level of indentation of the current line. This can be used to track
+	// the hierarchical structure of the list.
+	Depth int `json:"depth"`
 	// Wiktionary language code
 	LangCode string `json:"lang_code"`
 	// Language name
