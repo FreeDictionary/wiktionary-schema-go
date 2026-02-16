@@ -298,6 +298,11 @@ type SenseData struct {
 // and `etymology_templates` keys in the word's data. When multiple
 // part-of-speech are listed under the same etymology, the same data
 // is copied to each part-of-speech entry under that etymology.
+//
+// Linkages (`synonyms`, `antonyms`, `hypernyms`, `derived`, `holonyms`,
+// `meronyms`, `derived`, `related`, `coordinate_terms`) are stored in
+// the word's data if not sense-disambiguated, and in the word sense if
+// sense-disambiguated.
 type WordData struct {
 	Abbreviations []LinkageData `json:"abbreviations,omitempty"`
 	// list of words that his sense is an alternative form of; this is a list
