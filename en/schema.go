@@ -69,10 +69,14 @@ type ExtraTemplateData struct {
 type TemplateArgs map[string]string
 
 type TemplateData struct {
-	Args       TemplateArgs      `json:"args"`
-	Explansion string            `json:"explansion"`
-	Name       string            `json:"name"`
-	ExtraData  ExtraTemplateData `json:"extra_data"`
+	// dictionary mapping argument names to their cleaned values. Positional
+	// arguments have keys that are numeric strings, starting with "1".
+	Args TemplateArgs `json:"args"`
+	// the (cleaned) text the template expands to.
+	Explansion string `json:"explansion"`
+	// name of the template
+	Name      string             `json:"name"`
+	ExtraData *ExtraTemplateData `json:"extra_data,omitempty"`
 }
 
 type DescendantData struct {
