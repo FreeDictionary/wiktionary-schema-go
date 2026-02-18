@@ -63,7 +63,9 @@ type FormOf struct {
 	Roman *string `json:"roman,omitempty"`
 }
 
-type LinkData [][]string
+// Although LinkData is `LinkData = list[Sequence[str]]` according
+// to official python implementation, it proves to be `list[str]`.
+type LinkData []string
 
 // It is the alias of `PlusObjTemplateData`.
 type ExtraTemplateData struct {
