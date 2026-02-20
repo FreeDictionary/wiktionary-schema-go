@@ -10,7 +10,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/Astral-Sphere/wiktionary-schema-go/en"
+	"github.com/FreeDictionary/wiktionary-schema-go/en"
 )
 
 const RAW_DATA_PATH string = "../test_data/raw-wiktextract-data.jsonl"
